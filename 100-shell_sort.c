@@ -1,41 +1,44 @@
 #include "sort.h"
-
 /**
- * shell_sort - sorts an array of integers in ascending order
- * @array: Array of integers
- * @size: Size of the array
- * Return - void
+ * shell_sort - function that sorts an array
+ * of integers in ascending order
+ * @array: input arrray
+ * @size: size of the array
+ * Return: no return
  */
 void shell_sort(int *array, size_t size)
 {
-	size_t i, space = 1, j;
-	int tmp; /*tmporal variable for swap*/
+	size_t n = 1;
 
-	if (!array || size < 2)
-		return;
+	while (n < size)
+		n = (n * 3) + 1;
 
-	while (space < size / 3)
+	while ((n = (n - 1) / 3) > 0)
+		_ssort(array, size, n);
+}
+/**
+ * _ssort - auxiliar function for
+ * shell_sort function
+ * @a: input arrray
+ * @size: size of the array
+ * @n: intervale
+ * Return: no return
+ */
+void _ssort(int *a, int size, int n)
+{
+	int tmp, i, j;
+
+	for (i = 0; (i + n) < size; i++)
 	{
-		space = space * 3 + 1;
-	}
-
-	while (space > 0)
-	{
-		for (i = space; i < size; i++)
+		for (j = i + n; (j - n) >= 0; j = j - n)
 		{
-			tmp = array[i];
-			for (i = space; i < size; i += 1)
+			if (a[j] < a[j - n])
 			{
-				tmp = array[i];
-
-				j = i;
-				while (j >= space && array[j - space] > tmp)
-				{
-					array[j] = array[j - space], j -= space;
-				}
-				array[j] = tmp;
+				tmp = a[j];
+				a[j] = a[j - n];
+				a[j - n] = tmp;
 			}
 		}
-		print_array(array, size), space = (space - 1) / 3;
 	}
+	print_array(a, size);
 }
