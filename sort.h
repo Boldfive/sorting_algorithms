@@ -1,15 +1,14 @@
-#ifndef SORT_H_
-#define SORT_H_
+#ifndef _SORT_
+#define _SORT_
 
-#include <stdio.h>
-#include <stdlib.h>
+#include<stdlib.h>
 
 /**
  * struct listint_s - Doubly linked list node
  *
- * @n: Integer stored in the node
- * @prev: Pointer to the previous element of the list
- * @next: Pointer to the next element of the list
+ * @n: Integer
+ * @next: Pointer to the next element of the list.
+ * @prev: Pointer to the previous element of the list.
  */
 typedef struct listint_s
 {
@@ -20,12 +19,20 @@ typedef struct listint_s
 
 void bubble_sort(int *array, size_t size);
 void insertion_sort_list(listint_t **list);
-void swap_nodes(listint_t **list, listint_t **node1, listint_t **node2);
 void selection_sort(int *array, size_t size);
-void swap_integers(int *a, int *b);
 void quick_sort(int *array, size_t size);
+void shell_sort(int *array, size_t size);
+void counting_sort(int *array, size_t size);
+void radix_sort(int *array, size_t size);
 void print_array(const int *array, size_t size);
 void print_list(const listint_t *list);
-listint_t *create_listint(const int *array, size_t size);
+void merge_sort(int *array, size_t size);
+void heap_sort(int *array, size_t size);
+void _ssort(int *a, int size, int n);
+void _qsort(int *a, int low, int high, int size);
+void cocktail_sort_list(listint_t **list);
+void recursion_heap(int *arr, int i, size_t size, int limit);
+void swap_nums(int *arr, int a, int b);
+
 
 #endif
